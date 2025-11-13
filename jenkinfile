@@ -8,6 +8,7 @@ pipeline {
                 sh 'echo "Hello from junkin"'
                 sh 'whoami'
                 sh 'df -h'
+                sh 'hostname -I'
             }
         }
     }

@@ -7,7 +7,7 @@ pipeline {
                 echo 'Hello World'
                 sh 'echo "Hello from junkin"'
                 sh 'whoami'
-            
+                sh 'df -h'
             }
         }
     }

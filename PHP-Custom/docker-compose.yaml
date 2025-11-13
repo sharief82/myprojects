@@ -1,0 +1,34 @@
+version:  '3.8'
+services:
+  webapp:
+    image: phpapp:${app}
+    build: . 
+    container_name: phpapp-db1
+    networks:
+      - staging-network
+    ports: 
+      - "85:80"
+  
+  db:
+    image: mysql-image:latest
+    container_name: mysql-instance
+    ports:
+      - "3306:3306"
+    networks:
+      - staging-network
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=sqlset1090
+networks:
+  staging-network:
+    name: "staging-network"
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/16
+volumes:
+  mysql-data:
+    name: "mysql-data"
